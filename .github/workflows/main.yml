@@ -4,7 +4,11 @@ name: CI
 #  schedule:
 #  - cron: "0 06,18 * * *"
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
