@@ -1,2 +1,2 @@
 # Resolver
-Massive list of public DNS resolvers. This list get updated everyday.
+Massive list of public DNS resolvers. This list get updated everyday.>3
