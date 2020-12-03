@@ -24,7 +24,6 @@ jobs:
           pip3 install wheel
           pip3 install setuptools
           sudo python3 setup.py install
-          rm ../resolvers_temp.txt
           dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers_temp.txt
           cp ../resolvers_temp ../resolvers.txt
           sed -i '/^$/d' ../resolvers.txt
