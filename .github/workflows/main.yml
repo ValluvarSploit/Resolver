@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-          token: ${{ secrets.TOKEN }}  
+        with:
+         token: ${{ secrets.TOKEN }} 
       - name: dnsvalidator
         run: |
           git clone https://github.com/vortexau/dnsvalidator
