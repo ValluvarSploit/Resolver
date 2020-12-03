@@ -25,7 +25,7 @@ jobs:
           pip3 install setuptools
           sudo python3 setup.py install
           dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers_temp.txt
-          cp ../resolvers_temp ../resolvers.txt
+          cp ../resolvers_temp.txt ../resolvers.txt
           sed -i '/^$/d' ../resolvers.txt
 
       - name: Commit resolvers.txt file
