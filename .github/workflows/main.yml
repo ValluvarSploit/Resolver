@@ -14,10 +14,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        with:
+      - uses: actions/checkout@v2
           token: ${{ secrets.TOKEN }}  
-      - name: DnsValidator
+      - name: dnsvalidator
         run: |
           git clone https://github.com/vortexau/dnsvalidator
           cd dnsvalidator
@@ -27,7 +26,7 @@ jobs:
           rm ../resolvers.txt
           dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers.txt
           sed -i '/^$/d' ../resolvers.txt 
-      - name: Commit resolvers.txt file
+      - name: Commit resolvers.txt
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
