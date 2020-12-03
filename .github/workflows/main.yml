@@ -27,6 +27,7 @@ jobs:
           rm ../resolvers.txt
           dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers.txt
           sed -i '/^$/d' ../resolvers.txt
+          rm -r dnsvalidator 
       - name: Commit resolvers.txt file
         run: |
           git config --local user.email "action@github.com"
