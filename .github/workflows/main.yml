@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  schedule:
+  - cron: "0 06,18 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.TOKEN }}  
+      - name: DnsValidator
+        run: |
+          git clone https://github.com/vortexau/dnsvalidator
+          cd dnsvalidator
+          pip3 install wheel
+          pip3 install setuptools
+          sudo python3 setup.py install
+          rm ../resolvers.txt
+          dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers.txt
+          sed -i '/^$/d' ../resolvers.txt
+
+      - name: Commit resolvers.txt file
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add resolvers.txt
+          git commit -m "Update resolvers.txt" -a
+          git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Resolver.git" HEAD:master --follow-tags
+          
