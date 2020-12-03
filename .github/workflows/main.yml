@@ -26,8 +26,7 @@ jobs:
           sudo python3 setup.py install
           rm ../resolvers.txt
           dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers.txt
-          sed -i '/^$/d' ../resolvers.txt
-          rm -r dnsvalidator 
+          sed -i '/^$/d' ../resolvers.txt 
       - name: Commit resolvers.txt file
         run: |
           git config --local user.email "action@github.com"
