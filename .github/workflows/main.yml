@@ -20,14 +20,11 @@ jobs:
       - name: DnsValidator
         run: |
           git clone https://github.com/vortexau/dnsvalidator
-          cd dnsvalidator
           pip3 install wheel
           pip3 install setuptools
-          sudo python3 setup.py install
-          dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers_temp.txt
-          cp ../resolvers_temp.txt ../resolvers.txt
-          sed -i '/^$/d' ../resolvers.txt
-
+          sudo python3 dnsvalidator/setup.py install
+          dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o resolvers.txt
+          sed -i '/^$/d' resolvers.txt
       - name: Commit resolvers.txt file
         run: |
           git config --local user.email "action@github.com"
