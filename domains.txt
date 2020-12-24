@@ -1,2 +1,0 @@
-pickmycareer.in
-testphp.vulnweb.com

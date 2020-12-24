@@ -1,3 +1,0 @@
-*.rapyd.net
-*.wolt.com
-*.pickmycareer.in
