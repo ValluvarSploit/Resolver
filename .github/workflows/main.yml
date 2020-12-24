@@ -1,8 +1,10 @@
 name: Resolver CI
 
 on:
-  schedule:
-  - cron: "0 06,18 * * *"
+  workflow_dispatch:
+#on:
+#  schedule:
+#  - cron: "0 06,18 * * *"
 
 
 jobs:
@@ -19,8 +21,9 @@ jobs:
           pip3 install wheel
           pip3 install setuptools
           sudo python3 setup.py install
+          wget https://public-dns.info/nameservers.txt
           rm ../resolvers.txt
-          dnsvalidator -tL https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt -threads 10 -o ../resolvers.txt
+          dnsvalidator -tL nameservers.txt -threads 10 -o ../resolvers.txt
           sed -i '/^$/d' ../resolvers.txt 
       - name: Commit resolvers.txt
         run: |
@@ -30,3 +33,4 @@ jobs:
           git commit -m "Update resolvers.txt" -a
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Resolver.git" HEAD:main --follow-tags
           
+#https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt
