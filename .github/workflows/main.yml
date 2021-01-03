@@ -30,5 +30,4 @@ jobs:
           git add resolvers.txt
           git commit -m "Update resolvers.txt" -a
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Resolver.git" HEAD:main --follow-tags
-          
-#https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/resolvers.txt
+
