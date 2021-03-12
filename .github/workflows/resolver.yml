@@ -1,10 +1,7 @@
 name: Resolver CI
-
 on:
   schedule:
   - cron: "0 */6 * * *"
-
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,4 +27,6 @@ jobs:
           git add resolvers.txt
           git commit -m "Update resolvers.txt" -a
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Resolver.git" HEAD:main --follow-tags
-
+      - name: Slack Notification
+        run: |
+         curl -X POST -H 'Content-type: application/json' --data '{"text":"DNS RESOLVER LIST UPDATED."}' "$WEBHOOK"
